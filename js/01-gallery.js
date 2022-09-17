@@ -3,8 +3,7 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const galleryRef = document.querySelector('.gallery');
-const { preview, original, description } = galleryItems;
-console.log();
+
 galleryRef.insertAdjacentHTML('afterbegin', greateMarcup(galleryItems));
 
 galleryRef.addEventListener('click', onImageClick);
@@ -35,10 +34,10 @@ function onImageClick(event) {
 
 function imageOpenClose(evt) {
   const instance = basicLightbox.create(`
-	<img src = '${evt.target.dataset.source}' width = '1280'>`);
+	<img class= "original-img" src = '${evt.target.dataset.source}' width = '1280'>`);
   instance.show();
 
-  galleryRef.addEventListener('keydown', onPressKeyClose);
+  galleryRef.addEventListener('keydown', onPressKeyClose, { once: true });
   function onPressKeyClose(event) {
     if (event.code === 'Escape') instance.close();
   }
