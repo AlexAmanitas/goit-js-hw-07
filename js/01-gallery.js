@@ -37,8 +37,11 @@ function imageOpenClose(evt) {
 	<img class= "original-img" src = '${evt.target.dataset.source}' width = '1280'>`);
   instance.show();
 
-  galleryRef.addEventListener('keydown', onPressKeyClose, { once: true });
-  function onPressKeyClose(event) {
-    if (event.code === 'Escape') instance.close();
+  if (instance.visible) {
+    galleryRef.addEventListener('keydown', onPressKeyClose);
+    function onPressKeyClose(event) {
+      console.log(event.code);
+      if (event.code === 'Escape') instance.close();
+    }
   }
 }
