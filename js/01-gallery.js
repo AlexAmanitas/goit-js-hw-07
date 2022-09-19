@@ -4,6 +4,15 @@ console.log(galleryItems);
 
 const galleryRef = document.querySelector('.gallery');
 
+const instanceOptions ={
+  onShow: (instance) => {
+    document.onkeydown = function(evt) {
+           console.log(evt.code)
+       if (evt.code === 'Escape') instance.close();
+    };
+  },
+}
+
 galleryRef.insertAdjacentHTML('afterbegin', greateMarcup(galleryItems));
 
 galleryRef.addEventListener('click', onImageClick);
@@ -34,14 +43,6 @@ function onImageClick(event) {
 
 function imageOpenClose(evt) {
   const instance = basicLightbox.create(`
-	<img class= "original-img" src = '${evt.target.dataset.source}' width = '1280'>`);
+	<img class= "original-img" src = '${evt.target.dataset.source}' width = '1280'>`,instanceOptions );
   instance.show();
-
-  if (instance.visible) {
-    galleryRef.addEventListener('keydown', onPressKeyClose);
-    function onPressKeyClose(event) {
-      console.log(event.code);
-      if (event.code === 'Escape') instance.close();
-    }
-  }
-}
+ }
