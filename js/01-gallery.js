@@ -3,12 +3,10 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const galleryRef = document.querySelector('.gallery');
-
 const instanceOptions ={
   onShow: (instance) => {
-    document.onkeydown = function(evt) {
-           console.log(evt.code)
-       if (evt.code === 'Escape') instance.close();
+    document.onkeydown = event => {
+           if (event.code === 'Escape') instance.close();
     };
   },
 }
