@@ -71,7 +71,6 @@ function calculateTeamFinanceReport(salaries, team) {
     total[`totalBudget${speciality}`] =
       salaryWithTax(specialityAndSalary[speciality], salaries[speciality].tax) *
       amount[speciality];
-
     sum += total[`totalBudget${speciality}`];
   }
   total['totalBudgetTeam'] = sum;
