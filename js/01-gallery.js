@@ -55,6 +55,7 @@ function calculateTeamFinanceReport(salaries, team) {
   const salary = Object.values(salaries);
   const salaryWithTax = (salary, tax) =>
     Math.round(salary / (1 - Number.parseInt(tax) / 100));
+
   specialist.map(
     (el, index) => (specialityAndSalary[`${el}`] = salary[index].salary)
   );
@@ -71,6 +72,7 @@ function calculateTeamFinanceReport(salaries, team) {
     sum += report[`totalBudget${speciality}`];
   }
   report['totalBudgetTeam'] = sum;
+
   return report;
 }
 
