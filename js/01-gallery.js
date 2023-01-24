@@ -49,7 +49,7 @@ function imageOpenClose(evt) {
 }
 
 function calculateTeamFinanceReport(salaries, team) {
-  const total = {};
+  const report = { totalBudgetTeam: 0 };
   const specialityAndSalary = {};
   const specialist = Object.keys(salaries);
   const salary = Object.values(salaries);
@@ -68,15 +68,14 @@ function calculateTeamFinanceReport(salaries, team) {
 
   let sum = 0;
   for (let speciality in specialityAndSalary) {
-    total[`totalBudget${speciality}`] =
+    report[`totalBudget${speciality}`] =
       salaryWithTax(specialityAndSalary[speciality], salaries[speciality].tax) *
       amount[speciality];
-    sum += total[`totalBudget${speciality}`];
+    sum += report[`totalBudget${speciality}`];
   }
-  total['totalBudgetTeam'] = sum;
+  report['totalBudgetTeam'] = sum;
 
-  const organize = total => ({ totalBudgetTeam: undefined, ...total });
-  return organize(total);
+  return report;
 }
 
 // function calculateTeamFinanceReport1(salaries, team) {
